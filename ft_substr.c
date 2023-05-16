@@ -12,10 +12,11 @@
 
 
 #include"so_long.h"
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+
+char	*ft_substr(char const *s, int start, int len)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	if (!s)

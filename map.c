@@ -38,6 +38,8 @@ void check_map(t_data *data)
 			{
 				mlx_put_image_to_window(data->mlx,data->win,data->grass, j*50,i*50);
 				mlx_put_image_to_window(data->mlx,data->win,data->tower, j*50,i*50);
+				data->numberofexit++;
+
 			}
 			if(data->arr[i][j] == '0')
 				mlx_put_image_to_window(data->mlx,data->win,data->grass, j*50,i*50);
@@ -61,14 +63,15 @@ void check_map(t_data *data)
 			
 		}
 	}
-	printf("%d\n",data->total_number_of_coins);
+	//if (data->number_of_player !=1 || data->total_number_of_coins ==0 || data->numberofexit != 1)
+	//	exit(0);
+	//printf("%d\n",data->total_number_of_coins);
 }
 int main(int ac,char **av)
 {
 	t_data data;
 	int fd;
-	int key;
-	int i = 0;
+	//int i = 0;
 	//int line_counter;
 	//line_counter =0;
 	if(ac == 2)
@@ -93,15 +96,15 @@ int main(int ac,char **av)
 		}
 		
 		data.arr = ft_split(total,'\n');		
-		i=-1;
-		while(data.arr[++i])
-			//printf("%s\n",data.arr[i]);
+		//i=-1;
+		//while(data.arr[++i])
+		//	printf("%s\n",data.arr[i]);
 		
-		if(!check_coin_exit(&data) || !check_walls_player(&data) || check_player(&data))
+		check_map(&data);
+		if(!check_coin_exit(&data) || !check_walls_player(&data) || !check_player(&data))
 			exit(0);
 		if(!check_cube(&data))
 			exit(0);
-		check_map(&data);
 		mlx_key_hook(data.win, key_move, &data);
 		mlx_loop(data.mlx);
 	}

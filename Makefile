@@ -1,19 +1,21 @@
-cc = gcc
-INC = so_long.h get_next_line.h
-FLAGS = -lmlx -framework OpenGL -framework AppKit
-SRCS = map.c moveplayer.c get_next_line.c get_next_line_utils.c ft_split.c ft_substr.c checkpath.c check.c
+NAME = so_long
+CC = cc
+CFLAGS = -Wall -Wextra -Werror 
+SRCS = ft_split.c ft_substr.c get_next_line.c get_next_line_utils.c map.c moveplayer.c check.c checkpath.c
+OBJS = $(SRCS:.c=.o)
 
-OBJS = ${SRCS:.c=.o}
-NAME = so_long.a get_next_line.a
 
-all : $(NAME)
+$(NAME) : ${OBJS}
+	$(CC) $(CFLAGS) ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
 
-${NAME}:${OBJS}
-		${LIBC} ${NAME} ${OBJS}
+all: $(NAME)
 
-clean: 
-	rm -f  $(OBJS)
-fclean: clean
-	rm -f ${NAME}
+clean:
+	rm -f $(OBJS)
+fclean:
+	@rm -f $(OBJS)
+	rm -f $(NAME) 
 
-.PHONY: all clean
+re:	fclean all
+
+.PHONY: all clean fclean re

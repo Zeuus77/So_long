@@ -39,36 +39,42 @@ void move(t_data *data, int *no_coin)
         return;
     if(data->arr[data->yp][data->xp] != '1' && data->arr[data->yp][data->xp] != 'E')
        data->arr[data->yp][data->xp] = '0';
-    mlx_put_image_to_window(data->mlx,data->win,data->player1,data->xp*50,data->yp*50);
+	
+	mlx_put_image_to_window(data->mlx,data->win,data->player1,data->xp*50,data->yp*50);
 }
 int key_move(int key,t_data *data)
 {
 	int no_coin = 0;
 	if (key == 13 && data->arr[data->yp - 1][data->xp] != '1')
 	{
+	//data->arr[data->yp ][data->xp] = '0';
+	//data->arr[data->yp - 1 ][data->xp] = 'P';
     data->yp -= 1;
-	//mlx_clear_window(data->mlx, data->win);
 	check_map(data);
     move(data,&no_coin);
     }
-	if(key == 1 && data->arr[data->yp + 1][data->xp] != '1' )
+	if(key == 1 && data->arr[data->yp + 1][data->xp] != '1'  )
 		{
+		//data->arr[data->yp][data->xp] = '0';
+		//data->arr[data->yp + 1 ][data->xp] = 'P';
 		data->yp += 1; 
-		//mlx_clear_window(data->mlx, data->win);
 		check_map(data);
 		move(data,&no_coin);
 		}
 	if(key == 0 && data->arr[data->yp][data->xp - 1] != '1')
+	
 		{
+		//data->arr[data->yp ][data->xp] = '0';
+		//data->arr[data->yp ][data->xp - 1] = 'P';
 		data->xp -=1;
-		//mlx_clear_window(data->mlx, data->win);
 		check_map(data);
 		move(data,&no_coin);
 		}
 	if(key == 2 && data->arr[data->yp][data->xp + 1] != '1'  )
 		{
+		//data->arr[data->yp][data->xp] = '0';
+		//data->arr[data->yp ][data->xp + 1] = 'P';
 		data->xp +=1;
-		//mlx_clear_window(data->mlx, data->win);
 		check_map(data);
 		move(data,&no_coin);
 		}

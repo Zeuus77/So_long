@@ -41,3 +41,56 @@ int check_cube(t_data *data)
 	return(1);
 
 }
+
+//int valid_path(t_data *data)
+//{
+//	if (data->total_number_of_coins == 0)
+//		return (0);
+//	if(data->arr[data->yp][data->xp] != '1')
+//		data->total_number_of_coins--;
+//	data->arr[data->yp][data->xp] = 'P';
+//	if(data->arr[data->yp -1][data->xp] != 'P' || data->arr[data->yp - 1][data->xp] != '1')
+//		{
+//			data->arr[data->yp] -=1;
+//			valid_path(data);
+//		}
+//	if(data->arr[data->yp + 1][data->xp] != 'P' || data->arr[data->yp + 1][data->xp] != '1')
+//		{
+//			data->arr[data->yp] += 1;
+//			valid_path(data);
+//		}
+//	if(data->arr[data->yp][data->xp - 1] != 'P' || data->arr[data->yp][data->xp - 1] != '1')
+//		{
+//			data->arr[data->xp] -= 1;
+//			valid_path(data);
+//		}
+//	if(data->arr[data->yp][data->xp + 1] != 'P' || data->arr[data->yp][data->xp + 1] != '1')
+//		{
+//			data->arr[data->xp] += 1;
+//			valid_path(data);
+//		}
+//	return(1);
+//	printf("%d\n",data->total_number_of_coins);
+
+//}
+int valid_path(t_data *data,int i, int j)
+{
+	if (data->total_number_of_coins == 0)
+		return (0);
+	if(data->arr[i][j] != '1')
+		data->total_number_of_coins--;
+	data->arr[i][j] = 'P';
+	if(data->arr[i -1][j] != 'P' || data->arr[i - 1][j] != '1')
+			valid_path(data,i-1,j);
+	if(data->arr[i + 1][j] != 'P' || data->arr[i + 1][j] != '1')
+			valid_path(data,i+1,j);
+	if(data->arr[i][j - 1] != 'P' || data->arr[i][j - 1] != '1')
+			valid_path(data,i,j-1);
+	if(data->arr[i][j + 1] != 'P' || data->arr[i][j + 1] != '1')
+		valid_path(data,i,j+1);
+	return(1);
+	
+
+	printf("%d\n",data->total_number_of_coins);
+
+}

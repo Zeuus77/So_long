@@ -37,6 +37,8 @@ typedef struct	s_data
 	int game_end;
 	int total_number_of_coins;
 	int number_of_player;
+	int numberofexit;
+	int coinsdiali;
 
 }				t_data;
 
@@ -45,9 +47,10 @@ typedef struct	s_data
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <mlx.h>
+#include "mlx/mlx.h"
 #include <limits.h>
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+char	*ft_substr(char const *s,  int start, int len);
 char	**ft_split(char const *s, char c);
 int		ft_strlen(const char *str);
 char	*get_line_from_save(char *save);
@@ -68,4 +71,6 @@ int check_walls_player(t_data *data);
 int check_coin_exit(t_data *data);
 int check_player(t_data *data);
 int check_cube(t_data *data);
+int valid_path(t_data *data, int i, int j);
+
 #endif

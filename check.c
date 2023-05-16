@@ -53,8 +53,6 @@ int check_walls_player(t_data *data)
 	int j;
 	int i;
 	i = -1;
-	int playerfound;
-	playerfound = 0;
 	while(data->arr[++i])
 	{
 		j = -1;
@@ -79,21 +77,24 @@ int check_player(t_data *data)
 {
 	int i;
 	int j;
-	int playerfound;
-	playerfound = 0;
 	i = -1;
 	while(data->arr[++i])
 	{
 		j = -1;
-		while(data->arr[++j])
+		while (data->arr[i][j++])
 		{
-			if(data->arr[i][j] == 'P')
-			data->xp = j;
-			data->yp = i;
-
+			if(data->arr[i][j] == 'p')
+			{
+				data->xp = j;
+				data->yp = i;
+			}
 		}
+		
 	}
 	if(data->arr[data->yp][data->xp] != 'P')
-		return(0);
+	{
+		printf("Error: PLAYER");
+		return 0;
+	}
 	return(1);
 }
